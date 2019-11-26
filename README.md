@@ -1,5 +1,5 @@
 # python_linkedin
-Python script which connect your linkedin account and search people with keywords.
+Python script which connect your linkedin account and search people with keywords. After connection, a file result.csv is created and put all results in this file. :thumbsup: :thumbsup:
 
 
 ## Important
@@ -32,7 +32,7 @@ To connect to your linkedin's account, you must remove the double authentication
 
 ### Add credentials to parametre.py
 
-Check parametre.py file to put your linkedin's credential & to put keywords on url
+Check parametre.py file to put your linkedin's credentials & to put keywords in url
 
 ### The script
 This script allow 2 webdriver : Chrome and Firefox
@@ -54,8 +54,11 @@ If you need help, use python ``` growth.py -h ``` or ``` growth.py --help ```
 
 
 
+## TO DO LIST
 
+[ ] Reaching all linkedin url and take informations about profile
 
+[ ] Put in theses informations on the file result.csv
 
 
 
