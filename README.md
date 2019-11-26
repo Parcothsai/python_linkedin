@@ -9,7 +9,7 @@ Script will be tested on Debian 10 with virtualenv. If you want to test without 
 
 To install virtualenv, use : 
 ```
-sudo apt-get install -y virutalenv ( Debian, Kali, Ubuntu ) and do that : 
+pip install virtualenv ( Debian, Kali, Ubuntu ) and do that : 
 
 mkdir virtual
 virtualenv virtual
