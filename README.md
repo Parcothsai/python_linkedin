@@ -30,6 +30,11 @@ To connect to your linkedin's account, you must remove the double authentication
 
 ## Usage of Python Script :
 
+### Add credentials to parametre.py
+
+Check parametre.py file to put your linkedin's credential & to put keywords on url
+
+### The script
 This script allow 2 webdriver : Chrome and Firefox
 
 To use correctly  growth.py, make this command :
