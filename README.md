@@ -1,6 +1,7 @@
 # python_linkedin
 Python script which connect your linkedin account and search people with keywords. After connection, a file result.csv is created and put all results in this file. :thumbsup: :thumbsup:
 
+This script is automated from start to finish! You have nothing else to do :wink:
 
 ## Important
 
@@ -16,6 +17,12 @@ source virtual/bin/activate
 ```
 
 Environnement is good ! :clap:
+
+## Alert :exclamation: :exclamation: :exclamation:
+
+The script may stop working if google detects the requests and sends you to the captcha page :cry: ! 
+
+Sorry for the inconvenience.
 
 
 ## Python Requirements
@@ -59,6 +66,8 @@ If you need help, use python ``` growth.py -h ``` or ``` growth.py --help ```
 [ ] Reaching all linkedin url and take informations about profile
 
 [ ] Put in theses informations on the file result.csv
+
+[ ] Detection of google captcha :weary:
 
 
 
