@@ -53,7 +53,7 @@ else:
     print ("Expected one argument, chrome or firefox ! Use grotwh.py -d chrome or -d firefox")
     sys.exit()
 
-#if args.driver == "search":
+
     
 
 
