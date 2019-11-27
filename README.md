@@ -69,6 +69,10 @@ If you need help, use python ``` growth.py -h ``` or ``` growth.py --help ```
 
 [ ] Detection of google captcha :weary:
 
+[ ] Add detection of Double authentication to add security ( interaction with script )
+
+
+
 
 
 
