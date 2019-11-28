@@ -24,6 +24,11 @@ The script may stop working if google detects the requests and sends you to the 
 
 Sorry for the inconvenience.
 
+### Update
+
+Detection of google captcha is implemented, you must be press "Enter" when you complete the captcha :satisfied: :satisfied: :satisfied:
+
+
 
 ## Python Requirements
 
@@ -58,7 +63,6 @@ python growh.py -i firefox
 
 ```
 
-Detection of google captcha is implemented, you must be press "Enter" when you complete the captcha :satisfied: :satisfied: :satisfied:
 
 If you need help, use python ``` growth.py -h ``` or ``` growth.py --help ```
 
