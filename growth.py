@@ -1,3 +1,5 @@
+from bs4 import BeautifulSoup
+
 import parametre
 import sys
 import csv
@@ -93,6 +95,16 @@ sleep(1)
 nb = 3
 while nb > 2:
   i = ["0","1","2","3","4","5","6","7","8","9","10","11"]
+  driver.current_url
+  htmlBody = driver.find_element_by_css_selector("body").get_attribute('innerHTML')
+
+  soup = BeautifulSoup(htmlBody, 'html5lib')
+
+  while soup.find("div", id="recaptcha") is not None:
+      print('You are temporary blacklisted from Google search. Complete the captcha then press ENTER.')
+      token = raw_input(">")
+      htmlBody = driver.find_element_by_css_selector("body").get_attribute('innerHTML')
+      soup = BeautifulSoup(htmlBody, 'html5lib')
   for path in i:
     linkedin_urls = driver.find_elements_by_xpath("//*[@id='rso']/div/div/div[{}]/div/div/div[1]/a".format(path))
 
@@ -112,7 +124,7 @@ while nb > 2:
 #    print(next)
 
   except:
-    print ("Failed access to next page OR google captcha is present, exit Script")
+    print ("Your are on the last page, exit")
     nb = 1
 
 driver.quit()
