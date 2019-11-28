@@ -53,8 +53,8 @@ python growth.py -d firefox
 
 If you need to install webdriver (chrome or firefox), you can use :
 ```
-growh.py -i chrome
-growh.py -i firefox
+python growh.py -i chrome
+python growh.py -i firefox
 
 ```
 
