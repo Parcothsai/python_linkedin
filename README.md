@@ -58,7 +58,7 @@ growh.py -i firefox
 
 ```
 
-Detection of google captcha is implemented, you must be press "Enter" when you complete the captcha 
+Detection of google captcha is implemented, you must be press "Enter" when you complete the captcha :satisfied: :satisfied: :satisfied:
 
 If you need help, use python ``` growth.py -h ``` or ``` growth.py --help ```
 
