@@ -1,3 +1,9 @@
+# encoding=utf8
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+
+
 from bs4 import BeautifulSoup
 
 import parametre
@@ -67,7 +73,7 @@ def pause():
   
 writer = csv.writer(open(parametre.file_name, 'wb'))
 
-writer.writerow(['Name', 'Job Title', 'Company', 'College', 'Location', 'URL'])
+writer.writerow(['Name', 'Job Title', 'Location', 'URL'])
 
 
 driver.get('https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin')
@@ -111,17 +117,23 @@ while nb > 2:
     for url in linkedin_urls:
       print(url.get_attribute("href"))
       url_link = url.get_attribute("href")
-      writer.writerow(["","","","","",url_link.encode('utf-8')])
+      driver.get(url_link)
+      linkedin_name = driver.find_element_by_xpath('//li[contains(@class,"inline t-24 t-black t-normal break-words")]')
+      linkedin_work = driver.find_element_by_xpath('//h2[contains(@class,"mt1 t-18 t-black t-normal")]')
+      linkedin_region = driver.find_element_by_xpath('//li[contains(@class,"t-16 t-black t-normal inline-block")]')
+      print(linkedin_name.text)
+      print(linkedin_work.text)
+      print(linkedin_region.text)
+      writer.writerow([linkedin_name.text,linkedin_work.text,linkedin_region.text,url_link.encode('utf-8')])
+      driver.back()
+      sleep(2)
 
   try:
-#    wait = WebDriverWait(driver, 2)
-#    next = driver.find_element_by_xpath("//*[@id='pnnext']")
+
     next = WebDriverWait(driver, 5).until(
         EC.presence_of_element_located((By.XPATH, "//*[@id='pnnext']"))
     )
     next.click()
-   # next = driver.wait.until(presence_of_element_located())
-#    print(next)
 
   except:
     print ("Your are on the last page, exit")
