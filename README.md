@@ -63,11 +63,11 @@ If you need help, use python ``` growth.py -h ``` or ``` growth.py --help ```
 
 ## TO DO LIST
 
-[ ] Reaching all linkedin url and take informations about profile
+[X] Reaching all linkedin url and take informations about profile
 
-[ ] Put in theses informations on the file result.csv
+[X] Put in theses informations on the file result.csv
 
-[ ] Detection of google captcha :weary:
+[X] Detection of google captcha :weary:
 
 [ ] Add detection of Double authentication to add security ( interaction with script )
 
