@@ -24,11 +24,9 @@ The script may stop working if google detects the requests and sends you to the 
 
 Sorry for the inconvenience.
 
-### Update
+### Update : Captcha detection
 
-Detection of google captcha is implemented, you must be press "Enter" when you complete the captcha :satisfied: :satisfied: :satisfied:
-
-
+Script detect captcha, and tell you to solve it ! :smile: :smile: :smile:
 
 ## Python Requirements
 
@@ -58,11 +56,12 @@ python growth.py -d firefox
 
 If you need to install webdriver (chrome or firefox), you can use :
 ```
-python growh.py -i chrome
-python growh.py -i firefox
+growh.py -i chrome
+growh.py -i firefox
 
 ```
 
+Attention, detection of OS is not implemented, I use apt-get install :expressionless: :expressionless: 
 
 If you need help, use python ``` growth.py -h ``` or ``` growth.py --help ```
 
@@ -70,13 +69,15 @@ If you need help, use python ``` growth.py -h ``` or ``` growth.py --help ```
 
 ## TO DO LIST
 
-[ ] Reaching all linkedin url and take informations about profile
+[X] Reaching all linkedin url and take informations about profile
 
-[ ] Put in theses informations on the file result.csv
+[X] Put in theses informations on the file result.csv
 
 [X] Detection of google captcha :weary:
 
 [ ] Add detection of Double authentication to add security ( interaction with script )
+
+[ ] Detection of OS to install Chrome or Firefox webdriver
 
 
 
