@@ -1,3 +1,9 @@
+# encoding=utf8
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+
+
 from bs4 import BeautifulSoup
 
 import parametre
@@ -67,7 +73,7 @@ def pause():
   
 writer = csv.writer(open(parametre.file_name, 'wb'))
 
-writer.writerow(['Name', 'Job Title', 'Company', 'College', 'Location', 'URL'])
+writer.writerow(['Name', 'Job Title', 'Location', 'URL'])
 
 
 driver.get('https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin')
@@ -94,38 +100,43 @@ sleep(1)
 
 nb = 3
 while nb > 2:
-  i = ["0","1","2","3","4","5","6","7","8","9","10","11"]
-  driver.current_url
-  htmlBody = driver.find_element_by_css_selector("body").get_attribute('innerHTML')
+    i = ["0","1","2","3","4","5","6","7","8","9","10","11"]
+    driver.current_url
+    htmlBody = driver.find_element_by_css_selector("body").get_attribute('innerHTML')
 
-  soup = BeautifulSoup(htmlBody, 'html5lib')
+    soup = BeautifulSoup(htmlBody, 'html5lib')
 
-  while soup.find("div", id="recaptcha") is not None:
-      print('You are temporary blacklisted from Google search. Complete the captcha then press ENTER.')
-      token = raw_input(">")
-      htmlBody = driver.find_element_by_css_selector("body").get_attribute('innerHTML')
-      soup = BeautifulSoup(htmlBody, 'html5lib')
-  for path in i:
-    linkedin_urls = driver.find_elements_by_xpath("//*[@id='rso']/div/div/div[{}]/div/div/div[1]/a".format(path))
+    while soup.find("div", id="recaptcha") is not None:
+        print('You are temporary blacklisted from Google search. Complete the captcha then press ENTER.')
+        token = raw_input(">")
+        htmlBody = driver.find_element_by_css_selector("body").get_attribute('innerHTML')
+        soup = BeautifulSoup(htmlBody, 'html5lib')
+    for path in i:
+        linkedin_urls = driver.find_elements_by_xpath("//*[@id='rso']/div/div/div[{}]/div/div/div[1]/a".format(path))
 
-    for url in linkedin_urls:
-      print(url.get_attribute("href"))
-      url_link = url.get_attribute("href")
-      writer.writerow(["","","","","",url_link.encode('utf-8')])
+        for url in linkedin_urls:
+           # print(url.get_attribute("href"))
+            url_link = url.get_attribute("href")
+            driver.get(url_link)
+            linkedin_name = driver.find_element_by_xpath('//li[contains(@class,"inline t-24 t-black t-normal break-words")]')
+            linkedin_work = driver.find_element_by_xpath('//h2[contains(@class,"mt1 t-18 t-black t-normal")]')
+            linkedin_region = driver.find_element_by_xpath('//li[contains(@class,"t-16 t-black t-normal inline-block")]')
+            print(linkedin_name.text)
+            print(linkedin_work.text)
+            print(linkedin_region.text)
+            writer.writerow([linkedin_name.text,linkedin_work.text,linkedin_region.text,url_link.encode('utf-8')])
+            driver.back()
+            sleep(2)
 
-  try:
-#    wait = WebDriverWait(driver, 2)
-#    next = driver.find_element_by_xpath("//*[@id='pnnext']")
-    next = WebDriverWait(driver, 5).until(
+    try:
+        next = WebDriverWait(driver, 5).until(
         EC.presence_of_element_located((By.XPATH, "//*[@id='pnnext']"))
-    )
-    next.click()
-   # next = driver.wait.until(presence_of_element_located())
-#    print(next)
+        )
+        next.click()
 
-  except:
-    print ("Your are on the last page, exit")
-    nb = 1
+    except:
+        print ("Your are on the last page, exit")
+        nb = 1
 
 driver.quit()
 

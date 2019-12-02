@@ -1,7 +1,7 @@
 # python_linkedin
 Python script which connect your linkedin account and search people with keywords. After connection, a file result.csv is created and put all results in this file. :thumbsup: :thumbsup:
 
-This script is automated from start to finish! You have nothing else to do :wink:
+This script is automated from start to finish! You have nothing else to do :wink: :wink:
 
 ## Important
 
