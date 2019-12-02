@@ -115,7 +115,7 @@ while nb > 2:
         linkedin_urls = driver.find_elements_by_xpath("//*[@id='rso']/div/div/div[{}]/div/div/div[1]/a".format(path))
 
         for url in linkedin_urls:
-           # print(url.get_attribute("href"))
+
             url_link = url.get_attribute("href")
             driver.get(url_link)
             linkedin_name = driver.find_element_by_xpath('//li[contains(@class,"inline t-24 t-black t-normal break-words")]')
