@@ -24,6 +24,9 @@ The script may stop working if google detects the requests and sends you to the 
 
 Sorry for the inconvenience.
 
+### Update : Captcha detection
+
+Script detect captcha, and tell you to solve it ! :smile: :smile :smile:
 
 ## Python Requirements
 
