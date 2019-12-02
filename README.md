@@ -60,6 +60,9 @@ growh.py -i chrome
 growh.py -i firefox
 
 ```
+
+Attention, detection of OS is not implemented, I use apt-get install :expressionless: :expressionless: 
+
 If you need help, use python ``` growth.py -h ``` or ``` growth.py --help ```
 
 
@@ -73,6 +76,8 @@ If you need help, use python ``` growth.py -h ``` or ``` growth.py --help ```
 [X] Detection of google captcha :weary:
 
 [ ] Add detection of Double authentication to add security ( interaction with script )
+
+[ ] Detection of OS to install Chrome or Firefox webdriver
 
 
 
