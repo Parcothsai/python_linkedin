@@ -30,7 +30,7 @@ import subprocess
 parser = argparse.ArgumentParser()
 parser.add_argument("--driver", "-d", help="choose your driver with value chrome or firefox")
 parser.add_argument("--install", "-i", help="Install driver chrome || firefox")
-#parser.add_argument("--search", "-s", help="Use -s || --search to make search without using parametre.py ")
+parser.add_argument("--search", "-s", help="Use -s || --search to make search without using parametre.py :  site:linkedin.com/in/ AND  ")
 parser.add_argument("--output", "-o", help="Name of output")
 args = parser.parse_args()
 if args.install == "chrome":
@@ -39,10 +39,10 @@ if args.install == "firefox":
     subprocess.call(["bash","install/firefox.sh"])
     
 if args.driver == "chrome":
-    print ("driver is chrome")
-    print ("Check if webdriver chrome exist")
+    print ("Driver is chrome")
+    print ("Check if Webdriver Chrome exist")
     if path.exists("./chromedriver"):
-        print "webdriver chrome exist, continue !\n"
+        print "Webdriver chrome exist, continue !\n"
         driver = webdriver.Chrome('./chromedriver')
     else:
         print "Webdriver not present, please use -h for help ! "
@@ -50,9 +50,9 @@ if args.driver == "chrome":
        
 
 elif args.driver == "firefox":
-    print("driver is firefox")
+    print("Driver is firefox")
     if path.exists("/usr/local/bin/geckodriver") or path.exists("/usr/bin/geckodriver"):
-        print "Ok, geckodriver is present, continue..."
+        print "Ok, Geckodriver is present, continue..."
         driver = webdriver.Firefox()
     else:
         print "Geckodriver is not present, please use growth -i firefox"
@@ -63,8 +63,9 @@ else:
 
 if args.output:
     parametre.file_name = args.output
-    
 
+if args.search:
+    parametre.search_query = args.search
 
 def pause():
     time_break = random.randint(1,2)
