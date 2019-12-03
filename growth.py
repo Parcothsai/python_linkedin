@@ -31,7 +31,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--driver", "-d", help="choose your driver with value chrome or firefox")
 parser.add_argument("--install", "-i", help="Install driver chrome || firefox")
 #parser.add_argument("--search", "-s", help="Use -s || --search to make search without using parametre.py ")
-
+parser.add_argument("--output", "-o", help="Name of output")
 args = parser.parse_args()
 if args.install == "chrome":
     subprocess.call(["bash","install/chrome.sh"])
@@ -61,7 +61,8 @@ else:
     print ("Expected one argument, chrome or firefox ! Use grotwh.py -d chrome or -d firefox")
     sys.exit()
 
-
+if args.output:
+    parametre.file_name = args.output
     
 
 
@@ -111,28 +112,31 @@ while nb > 2:
 		token = raw_input(">")
 		htmlBody = driver.find_element_by_css_selector("body").get_attribute('innerHTML')
 		soup = BeautifulSoup(htmlBody, 'html5lib')
+        while a <= 10:
+            value = str(a)
 
-	while a <= 10:
-		value = str(a)
-		sel = driver.find_element_by_xpath("//*[@id='rso']/div/div/div[{}]/div/div/div[1]/a".format(value))
-		sel = sel.get_attribute("href")
-		print(sel)
-		driver.get(sel)
-        is_available = driver.current_url
-        if unavailable == is_available:
-            print("Profil is not available, next ")
+        #		print(value)
+        #		print(driver.find_element_by_xpath("//*[@id='rso']/div/div/div[{}]/div/div/div[1]/a".format(value)))
+            sel = driver.find_element_by_xpath("//*[@id='rso']/div/div/div[{}]/div/div/div[1]/a".format(value))
+            sel = sel.get_attribute("href")
+            print(sel)
+            driver.get(sel)
+            is_available = driver.current_url
+            if unavailable == is_available:
+                print("Profil is not available, next ")
+                driver.back()
+                break
+
+            linkedin_name = driver.find_element_by_xpath('//li[contains(@class,"inline t-24 t-black t-normal break-words")]')
+            linkedin_work = driver.find_element_by_xpath('//h2[contains(@class,"mt1 t-18 t-black t-normal")]')
+            linkedin_region = driver.find_element_by_xpath('//li[contains(@class,"t-16 t-black t-normal inline-block")]')
+            print(linkedin_name.text)
+            print(linkedin_work.text)
+            print(linkedin_region.text)
+            writer.writerow([linkedin_name.text, linkedin_work.text, linkedin_region.text, sel.encode('utf-8')])
             driver.back()
-            break
-		linkedin_name = driver.find_element_by_xpath('//li[contains(@class,"inline t-24 t-black t-normal break-words")]')
-		linkedin_work = driver.find_element_by_xpath('//h2[contains(@class,"mt1 t-18 t-black t-normal")]')
-		linkedin_region = driver.find_element_by_xpath('//li[contains(@class,"t-16 t-black t-normal inline-block")]')
-		print(linkedin_name.text)
-		print(linkedin_work.text)
-		print(linkedin_region.text)
-		writer.writerow([linkedin_name.text,linkedin_work.text,linkedin_region.text,sel.encode('utf-8')])
-		driver.back()
-		a += 1
-	a = 1
+            a += 1
+        a = 1
 	try:
 		next = WebDriverWait(driver, 5).until(
 			EC.presence_of_element_located((By.XPATH, "//*[@id='pnnext']"))
