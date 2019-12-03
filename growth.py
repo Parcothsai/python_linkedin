@@ -100,6 +100,7 @@ sleep(1)
 
 a = 1
 nb = 3
+unavailable = "https://www.linkedin.com/in/unavailable/"
 while nb > 2:
 	driver.current_url
 	htmlBody = driver.find_element_by_css_selector("body").get_attribute('innerHTML')
@@ -117,6 +118,11 @@ while nb > 2:
 		sel = sel.get_attribute("href")
 		print(sel)
 		driver.get(sel)
+        is_available = driver.current_url
+        if unavailable == is_available:
+            print("Profil is not available, next ")
+            driver.back()
+            break
 		linkedin_name = driver.find_element_by_xpath('//li[contains(@class,"inline t-24 t-black t-normal break-words")]')
 		linkedin_work = driver.find_element_by_xpath('//h2[contains(@class,"mt1 t-18 t-black t-normal")]')
 		linkedin_region = driver.find_element_by_xpath('//li[contains(@class,"t-16 t-black t-normal inline-block")]')
