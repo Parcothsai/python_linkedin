@@ -98,45 +98,45 @@ sleep(0.5)
 search_query.send_keys(Keys.RETURN)
 sleep(1)
 
+a = 1
 nb = 3
 while nb > 2:
-    i = ["0","1","2","3","4","5","6","7","8","9","10","11"]
-    driver.current_url
-    htmlBody = driver.find_element_by_css_selector("body").get_attribute('innerHTML')
+	driver.current_url
+	htmlBody = driver.find_element_by_css_selector("body").get_attribute('innerHTML')
 
-    soup = BeautifulSoup(htmlBody, 'html5lib')
+	soup = BeautifulSoup(htmlBody, 'html5lib')
+	while soup.find("div", id="recaptcha") is not None:
+		print('You are temporary blacklisted from Google search. Complete the captcha then press ENTER.')
+		token = raw_input(">")
+		htmlBody = driver.find_element_by_css_selector("body").get_attribute('innerHTML')
+		soup = BeautifulSoup(htmlBody, 'html5lib')
 
-    while soup.find("div", id="recaptcha") is not None:
-        print('You are temporary blacklisted from Google search. Complete the captcha then press ENTER.')
-        token = raw_input(">")
-        htmlBody = driver.find_element_by_css_selector("body").get_attribute('innerHTML')
-        soup = BeautifulSoup(htmlBody, 'html5lib')
-    for path in i:
-        linkedin_urls = driver.find_elements_by_xpath("//*[@id='rso']/div/div/div[{}]/div/div/div[1]/a".format(path))
+	while a <= 10:
+		value = str(a)
+		sel = driver.find_element_by_xpath("//*[@id='rso']/div/div/div[{}]/div/div/div[1]/a".format(value))
+		sel = sel.get_attribute("href")
+		print(sel)
+		driver.get(sel)
+		linkedin_name = driver.find_element_by_xpath('//li[contains(@class,"inline t-24 t-black t-normal break-words")]')
+		linkedin_work = driver.find_element_by_xpath('//h2[contains(@class,"mt1 t-18 t-black t-normal")]')
+		linkedin_region = driver.find_element_by_xpath('//li[contains(@class,"t-16 t-black t-normal inline-block")]')
+		print(linkedin_name.text)
+		print(linkedin_work.text)
+		print(linkedin_region.text)
+		writer.writerow([linkedin_name.text,linkedin_work.text,linkedin_region.text,sel.encode('utf-8')])
+		driver.back()
+		a += 1
+	a = 1
+	try:
+		next = WebDriverWait(driver, 5).until(
+			EC.presence_of_element_located((By.XPATH, "//*[@id='pnnext']"))
+		)
+		next.click()
 
-        for url in linkedin_urls:
+	except:
+		print("Your are on the last page, exit")
+		nb = 1
 
-            url_link = url.get_attribute("href")
-            driver.get(url_link)
-            linkedin_name = driver.find_element_by_xpath('//li[contains(@class,"inline t-24 t-black t-normal break-words")]')
-            linkedin_work = driver.find_element_by_xpath('//h2[contains(@class,"mt1 t-18 t-black t-normal")]')
-            linkedin_region = driver.find_element_by_xpath('//li[contains(@class,"t-16 t-black t-normal inline-block")]')
-            print(linkedin_name.text)
-            print(linkedin_work.text)
-            print(linkedin_region.text)
-            writer.writerow([linkedin_name.text,linkedin_work.text,linkedin_region.text,url_link.encode('utf-8')])
-            driver.back()
-            sleep(2)
-
-    try:
-        next = WebDriverWait(driver, 5).until(
-        EC.presence_of_element_located((By.XPATH, "//*[@id='pnnext']"))
-        )
-        next.click()
-
-    except:
-        print ("Your are on the last page, exit")
-        nb = 1
 
 driver.quit()
 
