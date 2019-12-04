@@ -67,7 +67,7 @@ python growth.py -i firefox
 
 Attention, detection of OS is not implemented, I use apt-get install :expressionless: :expressionless: 
 
-You can use ``` python growth -d chrome -o output.csv ```` to change the default csv file. Please, inform extension csv :sunglasses:
+You can use ``` python growth -d chrome -o output.csv ``` to change the default csv file. Please, inform extension csv :sunglasses:
 
 You can use ``` python growth -d chrome -s "site:linkedin.com/in AND python OR perl AND USA" ```. It replaces default parametre.py variable :yum: 
 
