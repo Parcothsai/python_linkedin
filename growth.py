@@ -31,7 +31,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--driver", "-d", help="choose your driver with value chrome or firefox")
 parser.add_argument("--install", "-i", help="Install driver chrome || firefox")
 parser.add_argument("--search", "-s", help="Use -s || --search to make search without using parametre.py :  site:linkedin.com/in/ AND  ")
-parser.add_argument("--output", "-o", help="Name of output")
+parser.add_argument("--output", "-o", help="Name of output result file. Exemple : -o myresult.csv")
 args = parser.parse_args()
 if args.install == "chrome":
     subprocess.call(["bash","install/chrome.sh"])
@@ -122,6 +122,7 @@ while nb > 2:
             sel = sel.get_attribute("href")
             print(sel)
             driver.get(sel)
+            sleep(2)
             is_available = driver.current_url
             if unavailable == is_available:
                 print("Profil is not available, next ")
