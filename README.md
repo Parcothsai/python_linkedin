@@ -60,14 +60,18 @@ python growth.py -d firefox
 
 If you need to install webdriver (chrome or firefox), you can use :
 ```
-growh.py -i chrome
-growh.py -i firefox
+python growth.py -i chrome
+python growth.py -i firefox
 
 ```
 
 Attention, detection of OS is not implemented, I use apt-get install :expressionless: :expressionless: 
 
-If you need help, use python ``` growth.py -h ``` or ``` growth.py --help ```
+You can use ``` python growth -d chrome -o output.csv ``` to change the default csv file. Please, inform extension csv :sunglasses:
+
+You can use ``` python growth -d chrome -s "site:linkedin.com/in AND python OR perl AND USA" ```. It replaces default parametre.py variable :yum: 
+
+If you need help, use ``` python growth.py -h ``` or ``` python growth.py --help ```
 
 
 
