@@ -90,7 +90,20 @@ password.send_keys(parametre.linkedin_password)
 
 sign_in_button = driver.find_element_by_xpath('//*[@type="submit"]')
 
+
+
+
+
 sign_in_button.click()
+driver.current_url
+htmlBody = driver.find_element_by_css_selector("body").get_attribute('innerHTML')
+soup = BeautifulSoup(htmlBody, 'html5lib')
+
+while soup.find("form", id="two-step-challenge") is not None:
+    print('Double Authentification is enabled, please enter your verification code  and press ENTER on the script :)')
+    token = raw_input(">")
+    htmlBody = driver.find_element_by_css_selector("body").get_attribute('innerHTML')
+    soup = BeautifulSoup(htmlBody, 'html5lib')
 sleep(0.2)
 driver.get('https://www.google.com')
 sleep(1)
@@ -122,6 +135,7 @@ while nb > 2:
             sel = sel.get_attribute("href")
             print(sel)
             driver.get(sel)
+
             sleep(2)
             is_available = driver.current_url
             if unavailable == is_available:

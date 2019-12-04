@@ -38,6 +38,10 @@ pip install -r requirements.txt
 
 To connect to your linkedin's account, you must remove the double authentication :smirk: ! Pay attention with that !
 
+### Update :bowtie: :bowtie:
+
+Script detect if you have a two step challenge, and tell you to enter the code. Then, Press ENTER on the script ! :smile: :smile:
+
 ## Usage of Python Script :
 
 ### Add credentials to parametre.py
@@ -75,7 +79,7 @@ If you need help, use python ``` growth.py -h ``` or ``` growth.py --help ```
 
 [X] Detection of google captcha :weary:
 
-[ ] Add detection of Double authentication to add security ( interaction with script )
+[X] Add detection of Double authentication to add security ( interaction with script )
 
 [ ] Detection of OS to install Chrome or Firefox webdriver
 
