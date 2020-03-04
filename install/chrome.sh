@@ -27,9 +27,10 @@ then
 		echo -e "Delete zip file\n"
 		sudo rm chromedriver_linux64.zip
 	fi
-
-	echo -e "Get chromedriver version 78.0.3904.11 Linux 64\n"
-	wget https://chromedriver.storage.googleapis.com/78.0.3904.11/chromedriver_linux64.zip
+	echo -e "If you have a problem to download or to use Chromedriver, please go to https://chromedriver.chromium.org/downloads and get your version :)"
+	version="80.0.3987.106"
+	echo -e "Get chromedriver version $version Linux 64\n"
+	wget https://chromedriver.storage.googleapis.com/$version/chromedriver_linux64.zip
 	echo -e  "Unzip chromedriver_linux64.zip \n"
 	unzip chromedriver_linux64.zip
 	echo -e  "Delete zip file \n"
